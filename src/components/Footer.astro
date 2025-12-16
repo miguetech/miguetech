@@ -1,0 +1,12 @@
+---
+const { year } = Astro.props;
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<footer class="bg-[var(--color-bg-card)] border-t border-[var(--color-border)] py-8 text-center text-[var(--color-text-muted)] text-sm transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-4">
+        <p>&copy; {year} Miguetech. {t('footer.rights')}</p>
+    </div>
+</footer>

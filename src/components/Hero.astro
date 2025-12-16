@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import myPhoto from '../assets/mi-foto.jpg';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--color-accent)]/10 via-[var(--color-bg-main)] to-[var(--color-accent)]/5 overflow-hidden relative">
+    <!-- Background decorative elements -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-[var(--color-accent)]/20 rounded-full blur-[100px] animate-pulse"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-[var(--color-accent)]/10 rounded-full blur-[100px] animate-pulse"></div>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto w-full z-10 gap-12 pt-20">
+        <div class="flex-1 text-center md:text-left">
+          <h1 class="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-[var(--color-text-main)] via-[var(--color-accent)] to-[var(--color-text-main)] bg-clip-text text-transparent drop-shadow-lg p-2">
+            Miguetech
+          </h1>
+          <h2 class="text-2xl md:text-4xl mb-6 text-[var(--color-accent)] font-semibold tracking-wide">
+            {t('hero.title')}
+          </h2>
+          <p class="text-lg md:text-xl mb-8 max-w-2xl text-[var(--color-text-muted)] leading-relaxed font-light">
+             {t('hero.bio')}
+          </p>
+          
+          <div class="mb-10">
+            <h3 class="text-sm text-[var(--color-text-muted)] mb-3 uppercase tracking-wider">Tech Stack</h3>
+            <div class="flex flex-wrap justify-center md:justify-start gap-3">
+                {["React", "TypeScript", "Astro", "TailwindCSS", "Node.js", "Python"].map((skill) => (
+                <span class="px-4 py-2 bg-[var(--color-bg-card)]/50 backdrop-blur-sm text-[var(--color-accent)] rounded-full text-sm border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)]/10 transition-all duration-300 cursor-default shadow-sm">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+           <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+               <a href="#contact" class="px-8 py-4 bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-hover)] text-white rounded-lg hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300 font-bold text-lg text-center">
+                {t('hero.contact')}
+              </a>
+              <a href="#projects" class="px-8 py-4 bg-transparent border border-[var(--color-accent)] text-[var(--color-accent)] rounded-lg hover:bg-[var(--color-accent)]/10 hover:translate-y-[-2px] transition-all duration-300 font-bold text-lg text-center">
+                {t('hero.viewProjects')}
+              </a>
+           </div>
+        </div>
+        
+        <div class="relative group">
+             <div class="absolute -inset-1 bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-hover)] rounded-full blur opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+             <Image src={myPhoto} alt="Miguel Hernández" class="relative w-64 h-64 md:w-96 md:h-96 rounded-full border-4 border-[var(--color-bg-main)] shadow-2xl object-cover object-top z-10" />
+        </div>
+    </div>
+    
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-electric-blue/50">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+    </div>
+</section>

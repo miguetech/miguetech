@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+    lang?: string;
+}
+
+const { title, lang = 'es' } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Portfolio de Miguel Hernández (Miguetech) - Desarrollador Full Stack" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+		<title>{title}</title>
+        <script is:inline>
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        </script>
+	</head>
+	<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white font-montserrat min-h-screen selection:bg-electric-blue selection:text-deep-blue transition-colors duration-300">
+		<slot />
+	</body>
+</html>
